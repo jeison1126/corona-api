@@ -1,0 +1,169 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nmda-admision-api
+  namespace: prd
+  labels:
+    role: web
+    access: public
+    app: prd-nmda-admision-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prd-nmda-admision-api
+  template:
+    metadata:
+      labels:
+        role: web
+        access: public
+        scope: database
+        app: prd-nmda-admision-api
+    spec:
+      tolerations:
+      - key: "dedicated"
+        operator: "Equal"
+        value: "web-#{COST_CENTER}#-app"
+        effect: "NoSchedule"
+      containers:
+        - name: prd-nmda-admision-api
+          image: #{ACR_NAME_SCR_PRD}#.azurecr.io/#{COST_CENTER}#/nmda/prd-nmda-admision-api:v#{API_VERSION}#
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
+          env:
+            - name: spring.datasource.url
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: spring.datasource.url
+            - name: spring.datasource.username
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: spring.datasource.username
+            - name: spring.datasource.password
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: spring.datasource.password
+            - name: intellect.client.host
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: intellect.client.host
+            - name: equifax.base.uri
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: equifax.base.uri
+            - name: email.uri
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: email.uri
+            - name: email.riesgo
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: email.riesgo
+            - name: sms.uri
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: sms.uri
+            - name: sms.api.key
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: sms.api.key
+            - name: cotizaciones.uri
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: cotizaciones.uri
+            - name: admision.api.key
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: admision.api.key
+            - name: disp.biometrico.uri
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: disp.biometrico.uri
+            - name: api.base.dpa.uri
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: api.base.dpa.uri
+            - name: cyc.base.uri
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: cyc.base.uri
+            - name: ecert.base.uri
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: ecert.base.uri
+            - name: ecert.username
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: ecert.username
+            - name: ecert.password
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: ecert.password
+            - name: ecert.rut.empresa
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: ecert.rut.empresa
+            - name: ecert.url.callback
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: ecert.url.callback
+            - name: ecert.url.webhook.contrato
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: ecert.url.webhook.contrato
+            - name: ecert.url.webhook.seguros
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: ecert.url.webhook.seguros
+            - name: ecert.producto.combinado.id
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-nmda
+                  key: ecert.producto.combinado.id
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: service-prd-nmda-admision-api
+  namespace: prd
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+spec:
+  selector:
+    role: web
+    access: public
+    app: prd-nmda-admision-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer

@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-nmda
+data:
+  spring.datasource.url: "#{spring.datasource.url}#" 
+  spring.datasource.username: "#{spring.datasource.username}#"
+  spring.datasource.password: "#{spring.datasource.password}#"
+  intellect.client.host: "#{intellect.client.host}#"
+  equifax.base.uri: "#{equifax.base.uri}#"
+  email.uri: "#{email.uri}#"
+  email.riesgo: "#{email.riesgo}#"
+  sms.uri: "#{sms.uri}#"
+  sms.api.key: "#{sms.api.key}#"
+  cotizaciones.uri: "#{cotizaciones.uri}#"
+  admision.api.key: "#{admision.api.key}#"
+  disp.biometrico.uri: "#{disp.biometrico.uri}#"
+  api.base.dpa.uri: "#{api.base.dpa.uri}#"
+  cyc.base.uri: "#{cyc.base.uri}#"
+  ecert.base.uri: "#{ecert.base.uri}#"
+  ecert.username: "#{ecert.username}#"
+  ecert.password: "#{ecert.password}#"
+  ecert.rut.empresa: "#{ecert.rut.empresa}#"
+  ecert.url.callback: "#{ecert.url.callback}#"
+  ecert.url.webhook.contrato: "#{ecert.url.webhook.contrato}#"
+  ecert.url.webhook.seguros: "#{ecert.url.webhook.seguros}#"
+  ecert.producto.combinado.id: "#{ecert.producto.combinado.id}#"

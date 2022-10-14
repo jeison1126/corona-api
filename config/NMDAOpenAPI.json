@@ -1,0 +1,3008 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API CORONA FINANCIERO - ADMISION",
+    "description": "API Corona Financiero Admision",
+    "termsOfService": "http://swagger.io/terms/",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://springdoc.org"
+    },
+    "version": "1.0"
+  },
+  "servers": [{
+    "url": "http://localhost:8080/admision/api",
+    "description": "Generated server url"
+  }],
+  "tags": [{
+    "name": "Estado Civil",
+    "description": "APIs de Estado Civil"
+  }, {
+    "name": "Reglas de Negocio",
+    "description": "APIs de Reglas de Negocio"
+  }, {
+    "name": "Mensajes de Rechazo",
+    "description": "APIs de Mensajes de Rechazo"
+  }, {
+    "name": "Actividad",
+    "description": "APIs de Actividad"
+  }, {
+    "name": "Perfilamiento",
+    "description": "APIs para Perfilamiento"
+  }, {
+    "name": "Sucursales",
+    "description": "APIs de Sucursales"
+  }, {
+    "name": "No Recomendados",
+    "description": "APIs de No Recomendados"
+  }, {
+    "name": "Profesion Ocupacion  u Oficio",
+    "description": "APIs de Profesion / Ocupacion / Oficio"
+  }, {
+    "name": "Biometria",
+    "description": "APIs de biometria"
+  }, {
+    "name": "Region y Comunas",
+    "description": "APIs de regiones y comunas"
+  }, {
+    "name": "Funcionarios",
+    "description": "APIs para Funcionarios"
+  }, {
+    "name": "MFA",
+    "description": "APIs de MFA"
+  }, {
+    "name": "Estado Solicitud",
+    "description": "APIs de Estado de Solicitud"
+  }, {
+    "name": "Canal",
+    "description": "APIs de Canales de Atención"
+  }, {
+    "name": "Nacionalidad",
+    "description": "APIs de Nacionalidades"
+  }, {
+    "name": "Fase Informacion Oferta",
+    "description": "APIs para la fase Informacion Oferta"
+  }, {
+    "name": "Solicitud Admision",
+    "description": "APIs de Solicitud Admision"
+  }, {
+    "name": "Cliente",
+    "description": "APIs de Prospecto / Cliente"
+  }, {
+    "name": "Fases",
+    "description": "APIs de Fases"
+  }],
+  "paths": {
+    "/regla-negocio/actualizar": {
+      "put": {
+        "tags": ["Reglas de Negocio"],
+        "operationId": "actualizar",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReglaNegocioCompletoDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/perfilamiento/rol": {
+      "get": {
+        "tags": ["Perfilamiento"],
+        "operationId": "listarRoles",
+        "parameters": [{
+          "name": "pagina",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          }
+        }, {
+          "name": "filtro",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string",
+            "default": ""
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginacionRolDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Perfilamiento"],
+        "operationId": "actualizarRol",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActualizarRolRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Perfilamiento"],
+        "operationId": "crearRol",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearRolRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/perfilamiento/perfil": {
+      "get": {
+        "tags": ["Perfilamiento"],
+        "operationId": "listarPerfiles",
+        "parameters": [{
+          "name": "pagina",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          }
+        }, {
+          "name": "filtro",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string",
+            "default": ""
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginacionPerfilDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Perfilamiento"],
+        "operationId": "modificarPerfil",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModificaPerfilDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Perfilamiento"],
+        "operationId": "crearPerfil",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearPerfilDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/perfilamiento/perfilFuncionario": {
+      "put": {
+        "tags": ["Perfilamiento"],
+        "operationId": "actualizarPerfilesFuncionario",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActualizarPerfilFuncionarioRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Perfilamiento"],
+        "operationId": "crearPerfilesFuncionario",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearPerfilFuncionarioRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/no_recomendados/": {
+      "put": {
+        "tags": ["No Recomendados"],
+        "operationId": "actualizarNoRecomendado",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NoRecomendadosRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": ["No Recomendados"],
+        "operationId": "registrarNoRecomendado",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NoRecomendadosRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/mensaje-rechazo/": {
+      "put": {
+        "tags": ["Mensajes de Rechazo"],
+        "operationId": "actualizarMensajeRechazo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MensajeRechazoDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Mensajes de Rechazo"],
+        "operationId": "crearMensajeRechazo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NuevoMensajeRechazoDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/solicitud/": {
+      "post": {
+        "tags": ["Solicitud Admision"],
+        "operationId": "listaSolicitudAdmision",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FiltroSolicitudAdmisionDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginacionSolicitudAdmisionDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regla-negocio/registrar": {
+      "post": {
+        "tags": ["Reglas de Negocio"],
+        "operationId": "registrar",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReglaNegocioBasicoDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/mfa/verificacion": {
+      "post": {
+        "tags": ["MFA"],
+        "operationId": "verificaValidacionMFA",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MFARequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/mfa/validar": {
+      "post": {
+        "tags": ["MFA"],
+        "operationId": "validarSMS",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidarMFARequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/mfa/": {
+      "post": {
+        "tags": ["MFA"],
+        "operationId": "enviarSMS",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MFARequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/informacion-oferta/rechazarOferta": {
+      "post": {
+        "tags": ["Fase Informacion Oferta"],
+        "operationId": "rechazarOferta",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OfertaRechazadaDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/informacion-oferta/aceptarOferta": {
+      "post": {
+        "tags": ["Fase Informacion Oferta"],
+        "operationId": "aceptarOferta",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OfertaAceptadaDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/funcionario": {
+      "get": {
+        "tags": ["Funcionarios"],
+        "operationId": "listarFuncionariosVigentes",
+        "parameters": [{
+          "name": "pagina",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          }
+        }, {
+          "name": "filtro",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string",
+            "default": ""
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginacionFuncionarioResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Funcionarios"],
+        "operationId": "crearFuncionario",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FuncionarioRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/cliente/registro": {
+      "post": {
+        "tags": ["Cliente"],
+        "operationId": "registroProspecto",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProspectoDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistroProspectoResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cliente/datos/": {
+      "post": {
+        "tags": ["Cliente"],
+        "operationId": "registroDatosCliente",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistroClienteRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/biometria/verificacion": {
+      "post": {
+        "tags": ["Biometria"],
+        "operationId": "verificaValidacionBiometrica",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivarDispositivoRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerificacionBiometriaResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/biometria/prospecto-solicitud/{rut}/{solicitudId}": {
+      "post": {
+        "tags": ["Biometria"],
+        "operationId": "registrarBiometriaProspecto",
+        "parameters": [{
+          "name": "rut",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }, {
+          "name": "solicitudId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BiometriaRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BiometriaResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/biometria/excepcion/{rut}/{solicitudId}": {
+      "post": {
+        "tags": ["Biometria"],
+        "operationId": "registrarBiometriaExcepcion",
+        "parameters": [{
+          "name": "rut",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }, {
+          "name": "solicitudId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BiometriaRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BiometriaResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/biometria/activar": {
+      "post": {
+        "tags": ["Biometria"],
+        "operationId": "activarDispositivo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivarDispositivoRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivarDispositivoResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/biometria/activar/excepcion": {
+      "post": {
+        "tags": ["Biometria"],
+        "operationId": "activarDispositivoExcepcion",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivarDispositivoRequestDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivarDispositivoResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sucursales": {
+      "get": {
+        "tags": ["Sucursales"],
+        "operationId": "listarSucursales",
+        "parameters": [{
+          "name": "zona",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string",
+            "default": ""
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SucursalDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sucursales/zonas/": {
+      "get": {
+        "tags": ["Sucursales"],
+        "operationId": "listarZonasGeograficasSucursal",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ZonaGeograficaDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/solicitud/{prospectoId}": {
+      "get": {
+        "tags": ["Solicitud Admision"],
+        "operationId": "obtenerEstadoSolicitudAdmision",
+        "parameters": [{
+          "name": "prospectoId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SolicitudAdmisionResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/solicitud/exportar/": {
+      "get": {
+        "tags": ["Solicitud Admision"],
+        "operationId": "exportar",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/solicitud/detalle/{solicitudAdmisionId}/{rutProspecto}": {
+      "get": {
+        "tags": ["Solicitud Admision"],
+        "operationId": "detalleSolicitudAdmision",
+        "parameters": [{
+          "name": "solicitudAdmisionId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }, {
+          "name": "rutProspecto",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetalleSolicitudAdmisionResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regla-negocio/recuperarPorId/{id}": {
+      "get": {
+        "tags": ["Reglas de Negocio"],
+        "operationId": "recuperarPorId",
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReglaNegocioCompletoDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regla-negocio/listarPaginado": {
+      "get": {
+        "tags": ["Reglas de Negocio"],
+        "operationId": "listarPaginado",
+        "parameters": [{
+          "name": "numPagina",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          }
+        }, {
+          "name": "campoOrdena",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string",
+            "default": "descripcion"
+          }
+        }, {
+          "name": "direccionOrdena",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string",
+            "default": "ASC"
+          }
+        }, {
+          "name": "valorFiltro",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string",
+            "default": ""
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginacionReglaNegocioDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/region-comuna/{codigoRegion}/comunas": {
+      "get": {
+        "tags": ["Region y Comunas"],
+        "operationId": "listarComunas",
+        "parameters": [{
+          "name": "codigoRegion",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ComunaDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/region-comuna/regiones": {
+      "get": {
+        "tags": ["Region y Comunas"],
+        "operationId": "listarRegiones",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RegionDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profesion/": {
+      "get": {
+        "tags": ["Profesion Ocupacion  u Oficio"],
+        "operationId": "listarProfesion",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProfesionResponseDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/perfilamiento/rol/{rolId}": {
+      "get": {
+        "tags": ["Perfilamiento"],
+        "operationId": "obtenerRol",
+        "parameters": [{
+          "name": "rolId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RolDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Perfilamiento"],
+        "operationId": "eliminarRol",
+        "parameters": [{
+          "name": "rolId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/perfilamiento/rol/vigente": {
+      "get": {
+        "tags": ["Perfilamiento"],
+        "operationId": "listarRolesVigentes",
+        "parameters": [{
+          "name": "pagina",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          }
+        }, {
+          "name": "filtro",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string",
+            "default": ""
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginacionRolDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/perfilamiento/perfil/{perfilId}": {
+      "get": {
+        "tags": ["Perfilamiento"],
+        "operationId": "obtenerPerfil",
+        "parameters": [{
+          "name": "perfilId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PerfilDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Perfilamiento"],
+        "operationId": "eliminarPerfil",
+        "parameters": [{
+          "name": "perfilId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/perfilamiento/perfil/vigente": {
+      "get": {
+        "tags": ["Perfilamiento"],
+        "operationId": "listarPerfilesVigentesPorFiltro",
+        "parameters": [{
+          "name": "pagina",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          }
+        }, {
+          "name": "filtro",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string",
+            "default": ""
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginacionPerfilResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/perfilamiento/perfil/funcionario/{rutFuncionario}": {
+      "get": {
+        "tags": ["Perfilamiento"],
+        "operationId": "listarPerfilesPorFuncionario",
+        "parameters": [{
+          "name": "rutFuncionario",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PerfilResponseDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/perfilamiento/modulo": {
+      "get": {
+        "tags": ["Perfilamiento"],
+        "operationId": "listarModulos",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ModuloDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/perfilamiento/accion": {
+      "get": {
+        "tags": ["Perfilamiento"],
+        "operationId": "listarAcciones",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccionDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/no_recomendados": {
+      "get": {
+        "tags": ["No Recomendados"],
+        "operationId": "listarNoRecomendados",
+        "parameters": [{
+          "name": "pagina",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          }
+        }, {
+          "name": "filtro",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string",
+            "default": ""
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginacionNoRecomendadosDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/no_recomendados/{rut}": {
+      "get": {
+        "tags": ["No Recomendados"],
+        "operationId": "obtenerNoRecomendable",
+        "parameters": [{
+          "name": "rut",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoRecomendadosDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["No Recomendados"],
+        "operationId": "eliminarNoRecomendado",
+        "parameters": [{
+          "name": "rut",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/nacionalidad/": {
+      "get": {
+        "tags": ["Nacionalidad"],
+        "operationId": "listarNacionalidades",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NacionalidadDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mensaje-rechazo": {
+      "get": {
+        "tags": ["Mensajes de Rechazo"],
+        "operationId": "listarMensajesRechazo",
+        "parameters": [{
+          "name": "pagina",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          }
+        }, {
+          "name": "filtro",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string",
+            "default": ""
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginacionMensajeRechazoDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/informacion-oferta/motivoRechazoTarjeta": {
+      "get": {
+        "tags": ["Fase Informacion Oferta"],
+        "operationId": "listarMotivosRechazoVigentes",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MotivoRechazoTarjetaDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/informacion-oferta/evaluacionProducto/solicitud/{solicitudId}/rut/{rut}": {
+      "get": {
+        "tags": ["Fase Informacion Oferta"],
+        "operationId": "listarProductosOfercidosBySolicitudIdAndRut",
+        "parameters": [{
+          "name": "solicitudId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }, {
+          "name": "rut",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductoCupoOfrecidoDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/informacion-oferta/diaPago": {
+      "get": {
+        "tags": ["Fase Informacion Oferta"],
+        "operationId": "listarDiasPagoVigentes",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/funcionario/existe/{rutFuncionario}": {
+      "get": {
+        "tags": ["Funcionarios"],
+        "operationId": "existeFuncionario",
+        "parameters": [{
+          "name": "rutFuncionario",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fase/": {
+      "get": {
+        "tags": ["Fases"],
+        "operationId": "listarFasesVigentes",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ParFaseDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/estado_solicitud/": {
+      "get": {
+        "tags": ["Estado Solicitud"],
+        "operationId": "listarEstados",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EstadoSolicitudDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/estado-civil/": {
+      "get": {
+        "tags": ["Estado Civil"],
+        "operationId": "listarEstadoCivil",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EstadoCivilResponseDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cliente/{rutCliente}": {
+      "get": {
+        "tags": ["Cliente"],
+        "operationId": "buscarCliente",
+        "parameters": [{
+          "name": "rutCliente",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProspectoResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cliente/datos/{rutCliente}": {
+      "get": {
+        "tags": ["Cliente"],
+        "operationId": "datosPersonalesBasicos",
+        "parameters": [{
+          "name": "rutCliente",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DatosBasicosMinimosResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/canal/": {
+      "get": {
+        "tags": ["Canal"],
+        "operationId": "listarCanales",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CanalDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actividad/": {
+      "get": {
+        "tags": ["Actividad"],
+        "operationId": "listarActividades",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ActividadResponseDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regla-negocio/eliminarPorId/{id}": {
+      "delete": {
+        "tags": ["Reglas de Negocio"],
+        "operationId": "eliminarPorId",
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/mensaje-rechazo/{mensajeRechazoId}": {
+      "delete": {
+        "tags": ["Mensajes de Rechazo"],
+        "operationId": "eliminarMensajeRechazo",
+        "parameters": [{
+          "name": "mensajeRechazoId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ReglaNegocioCompletoDTO": {
+        "type": "object",
+        "properties": {
+          "descripcion": {
+            "type": "string"
+          },
+          "valor": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "vigencia": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ActualizarRolRequestDTO": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string"
+          },
+          "modulo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "acciones": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "rolId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "vigencia": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ModificaPerfilDTO": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "perfilId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "vigencia": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ActualizarPerfilFuncionarioRequestDTO": {
+        "type": "object",
+        "properties": {
+          "rutFuncionario": {
+            "type": "string"
+          },
+          "perfiles": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      },
+      "NoRecomendadosRequestDTO": {
+        "type": "object",
+        "properties": {
+          "rut": {
+            "type": "string"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "apellidoPaterno": {
+            "type": "string"
+          },
+          "apellidoMaterno": {
+            "type": "string"
+          },
+          "sucursalOrigen": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "motivo": {
+            "type": "string"
+          }
+        }
+      },
+      "MensajeRechazoDTO": {
+        "type": "object",
+        "properties": {
+          "causalRechazoId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "descripcion": {
+            "type": "string"
+          },
+          "mensajeFuncional": {
+            "type": "string"
+          },
+          "vigencia": {
+            "type": "boolean"
+          }
+        }
+      },
+      "FiltroSolicitudAdmisionDTO": {
+        "type": "object",
+        "properties": {
+          "pagina": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rut": {
+            "type": "string"
+          },
+          "estadoEvaluacion": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "faseEvaluacion": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "fechaDesde": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fechaHasta": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "canalAtencion": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "sucursal": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "zonaGeografica": {
+            "type": "string"
+          },
+          "columnaOrden": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "orden": {
+            "type": "string",
+            "enum": ["ASC", "DESC"]
+          }
+        }
+      },
+      "ListaSolicitudAdmisionDTO": {
+        "type": "object",
+        "properties": {
+          "solicitudId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "rut": {
+            "type": "string"
+          },
+          "estadoSolicitud": {
+            "type": "string"
+          },
+          "faseEvaluacion": {
+            "type": "string"
+          },
+          "fechaSolicitud": {
+            "type": "string",
+            "format": "date"
+          },
+          "canalAtencion": {
+            "type": "string"
+          },
+          "sucursal": {
+            "type": "string"
+          },
+          "zonaGeograficaSucursal": {
+            "type": "string"
+          }
+        }
+      },
+      "PaginacionSolicitudAdmisionDTO": {
+        "type": "object",
+        "properties": {
+          "totalPagina": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pagina": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalElementos": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "solicitudes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ListaSolicitudAdmisionDTO"
+            }
+          }
+        }
+      },
+      "ReglaNegocioBasicoDTO": {
+        "type": "object",
+        "properties": {
+          "descripcion": {
+            "type": "string"
+          },
+          "valor": {
+            "type": "string"
+          }
+        }
+      },
+      "CrearRolRequestDTO": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string"
+          },
+          "modulo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "acciones": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      },
+      "CrearPerfilDTO": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      },
+      "CrearPerfilFuncionarioRequestDTO": {
+        "type": "object",
+        "properties": {
+          "funcionario": {
+            "$ref": "#/components/schemas/FuncionarioRequestDTO"
+          },
+          "perfiles": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      },
+      "FuncionarioRequestDTO": {
+        "type": "object",
+        "properties": {
+          "rut": {
+            "type": "string"
+          },
+          "nombreCompleto": {
+            "type": "string"
+          },
+          "nombreUsuario": {
+            "type": "string"
+          },
+          "sucursalId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombreSucursal": {
+            "type": "string"
+          },
+          "cargoId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombreCargo": {
+            "type": "string"
+          }
+        }
+      },
+      "MFARequestDTO": {
+        "type": "object",
+        "properties": {
+          "rut": {
+            "type": "string"
+          }
+        }
+      },
+      "ValidarMFARequestDTO": {
+        "type": "object",
+        "properties": {
+          "rut": {
+            "type": "string"
+          },
+          "codigo": {
+            "type": "string"
+          }
+        }
+      },
+      "NuevoMensajeRechazoDTO": {
+        "type": "object",
+        "properties": {
+          "descripcion": {
+            "type": "string"
+          },
+          "mensajeFuncional": {
+            "type": "string"
+          }
+        }
+      },
+      "OfertaRechazadaDTO": {
+        "type": "object",
+        "properties": {
+          "solicitudId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "rut": {
+            "type": "string"
+          },
+          "idMotivoRechazo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "otroMotivo": {
+            "type": "string"
+          }
+        }
+      },
+      "OfertaAceptadaDTO": {
+        "type": "object",
+        "properties": {
+          "rut": {
+            "type": "string"
+          },
+          "evaluacionProductoId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "diaPagoId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ProspectoDTO": {
+        "type": "object",
+        "properties": {
+          "rut": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "movil": {
+            "type": "string"
+          }
+        }
+      },
+      "RegistroProspectoResponseDTO": {
+        "type": "object",
+        "properties": {
+          "exito": {
+            "type": "boolean"
+          },
+          "mensaje": {
+            "type": "string"
+          }
+        }
+      },
+      "RegistroClienteRequestDTO": {
+        "type": "object",
+        "properties": {
+          "rut": {
+            "type": "string"
+          },
+          "telefonoAdicional": {
+            "type": "string"
+          },
+          "nacionalidad": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "estadoCivil": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "profesion": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "actividad": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "codigoRegion": {
+            "type": "string"
+          },
+          "codigoComuna": {
+            "type": "string"
+          },
+          "calle": {
+            "type": "string"
+          },
+          "numero": {
+            "type": "string"
+          },
+          "departamento": {
+            "type": "string"
+          },
+          "referencias": {
+            "type": "string"
+          },
+          "latitud": {
+            "type": "number",
+            "format": "float"
+          },
+          "longitud": {
+            "type": "number",
+            "format": "float"
+          },
+          "envioEcc": {
+            "type": "boolean"
+          },
+          "envioSMS": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ActivarDispositivoRequestDTO": {
+        "type": "object",
+        "properties": {
+          "rut": {
+            "type": "string"
+          },
+          "solicitudAdmisionId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "VerificacionBiometriaResponseDTO": {
+        "type": "object",
+        "properties": {
+          "validacionBiometrica": {
+            "type": "boolean"
+          },
+          "validacionExcepcion": {
+            "type": "boolean"
+          },
+          "solicitudId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "BiometriaDataRequestDTO": {
+        "type": "object",
+        "properties": {
+          "Cedula_Apellido": {
+            "type": "string"
+          },
+          "Cedula_Rut": {
+            "type": "string"
+          },
+          "Cedula_Serie": {
+            "type": "string"
+          },
+          "Cedula_Tipo": {
+            "type": "string"
+          },
+          "Cedula_Vencimiento": {
+            "type": "string"
+          },
+          "CedulaHuellaCoinciden": {
+            "type": "boolean"
+          },
+          "IDTransaccion": {
+            "type": "string"
+          }
+        }
+      },
+      "BiometriaRequestDTO": {
+        "type": "object",
+        "properties": {
+          "Resultado": {
+            "type": "boolean"
+          },
+          "Codigo": {
+            "type": "string"
+          },
+          "Detalle": {
+            "type": "string"
+          },
+          "Data": {
+            "$ref": "#/components/schemas/BiometriaDataRequestDTO"
+          }
+        }
+      },
+      "BiometriaResponseDTO": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean"
+          },
+          "mensaje": {
+            "type": "string"
+          }
+        }
+      },
+      "ActivarDispositivoResponseDTO": {
+        "type": "object",
+        "properties": {
+          "rut": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "SucursalDTO": {
+        "type": "object",
+        "properties": {
+          "codigoSucursal": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "zonaGeografica": {
+            "type": "string"
+          }
+        }
+      },
+      "ZonaGeograficaDTO": {
+        "type": "object",
+        "properties": {
+          "zonaGeografica": {
+            "type": "string"
+          }
+        }
+      },
+      "AdmisionFaseResponseDTO": {
+        "type": "object",
+        "properties": {
+          "admisionFaseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "faseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "descripcionFase": {
+            "type": "string"
+          },
+          "fechaRegistroFase": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "error": {
+            "type": "boolean"
+          },
+          "mensajeInterno": {
+            "type": "string"
+          },
+          "mensajeEjecutivo": {
+            "type": "string"
+          }
+        }
+      },
+      "SolicitudAdmisionResponseDTO": {
+        "type": "object",
+        "properties": {
+          "solicitudId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "estado": {
+            "type": "string"
+          },
+          "fechaRegistroSolicitud": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdmisionFaseResponseDTO"
+            }
+          }
+        }
+      },
+      "DetalleEvaluacionComercialResponsDTO": {
+        "type": "object",
+        "properties": {
+          "faseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "fase": {
+            "type": "string"
+          },
+          "reglaNegocio": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "DetalleSolicitudAdmisionResponseDTO": {
+        "type": "object",
+        "properties": {
+          "solicitudId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "fechaSolicitud": {
+            "type": "string",
+            "format": "date"
+          },
+          "canal": {
+            "type": "string"
+          },
+          "estadoSolicitud": {
+            "type": "string"
+          },
+          "rut": {
+            "type": "string"
+          },
+          "nombres": {
+            "type": "string"
+          },
+          "apellidoPaterno": {
+            "type": "string"
+          },
+          "apellidoMaterno": {
+            "type": "string"
+          },
+          "edad": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "movil": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "email": {
+            "type": "string"
+          },
+          "direccion": {
+            "$ref": "#/components/schemas/DireccionDTO"
+          },
+          "ejecutivo": {
+            "$ref": "#/components/schemas/FuncionarioDTO"
+          },
+          "sucursal": {
+            "$ref": "#/components/schemas/SucursalDTO"
+          },
+          "evaluacionComercial": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DetalleEvaluacionComercialResponsDTO"
+            }
+          }
+        }
+      },
+      "DireccionDTO": {
+        "type": "object",
+        "properties": {
+          "calle": {
+            "type": "string"
+          },
+          "numero": {
+            "type": "string"
+          },
+          "comuna": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          }
+        }
+      },
+      "FuncionarioDTO": {
+        "type": "object",
+        "properties": {
+          "rut": {
+            "type": "string"
+          },
+          "nombres": {
+            "type": "string"
+          }
+        }
+      },
+      "PaginacionReglaNegocioDTO": {
+        "type": "object",
+        "properties": {
+          "totalPagina": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pagina": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalElementos": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "mensajes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReglaNegocioCompletoDTO"
+            }
+          }
+        }
+      },
+      "ComunaDTO": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string"
+          },
+          "descripcion": {
+            "type": "string"
+          }
+        }
+      },
+      "RegionDTO": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string"
+          },
+          "descripcion": {
+            "type": "string"
+          }
+        }
+      },
+      "ProfesionResponseDTO": {
+        "type": "object",
+        "properties": {
+          "profesionId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "descripcion": {
+            "type": "string"
+          }
+        }
+      },
+      "ListarRolDTO": {
+        "type": "object",
+        "properties": {
+          "rolId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "vigencia": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PaginacionRolDTO": {
+        "type": "object",
+        "properties": {
+          "totalPagina": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pagina": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalElementos": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ListarRolDTO"
+            }
+          }
+        }
+      },
+      "RolDTO": {
+        "type": "object",
+        "properties": {
+          "rolId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "moduloId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "acciones": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "vigencia": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ListarPerfilDTO": {
+        "type": "object",
+        "properties": {
+          "perfilId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "vigencia": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PaginacionPerfilDTO": {
+        "type": "object",
+        "properties": {
+          "totalPagina": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pagina": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalElementos": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "perfiles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ListarPerfilDTO"
+            }
+          }
+        }
+      },
+      "PerfilDTO": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "perfilId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "vigencia": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PaginacionPerfilResponseDTO": {
+        "type": "object",
+        "properties": {
+          "totalPagina": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pagina": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalElementos": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "perfiles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PerfilResponseDTO"
+            }
+          }
+        }
+      },
+      "PerfilResponseDTO": {
+        "type": "object",
+        "properties": {
+          "perfilId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string"
+          }
+        }
+      },
+      "ModuloDTO": {
+        "type": "object",
+        "properties": {
+          "moduloId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string"
+          }
+        }
+      },
+      "AccionDTO": {
+        "type": "object",
+        "properties": {
+          "accionId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string"
+          }
+        }
+      },
+      "NoRecomendadosDTO": {
+        "type": "object",
+        "properties": {
+          "rut": {
+            "type": "string"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "apellidoPaterno": {
+            "type": "string"
+          },
+          "apellidoMaterno": {
+            "type": "string"
+          },
+          "sucursalOrigen": {
+            "$ref": "#/components/schemas/SucursalDTO"
+          },
+          "motivo": {
+            "type": "string"
+          }
+        }
+      },
+      "PaginacionNoRecomendadosDTO": {
+        "type": "object",
+        "properties": {
+          "totalPagina": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pagina": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalElementos": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "noRecomendados": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NoRecomendadosDTO"
+            }
+          }
+        }
+      },
+      "NacionalidadDTO": {
+        "type": "object",
+        "properties": {
+          "nacionalidadId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "descripcion": {
+            "type": "string"
+          }
+        }
+      },
+      "PaginacionMensajeRechazoDTO": {
+        "type": "object",
+        "properties": {
+          "totalPagina": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pagina": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalElementos": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "mensajes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MensajeRechazoDTO"
+            }
+          }
+        }
+      },
+      "MotivoRechazoTarjetaDTO": {
+        "type": "object",
+        "properties": {
+          "motivoRechazoId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "descripcion": {
+            "type": "string"
+          }
+        }
+      },
+      "ProductoCupoOfrecidoDTO": {
+        "type": "object",
+        "properties": {
+          "evaluacionProductoId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "descripcionTipoProducto": {
+            "type": "string"
+          },
+          "cupoAprobado": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "recomendado": {
+            "type": "boolean"
+          }
+        }
+      },
+      "FuncionarioResponseDTO": {
+        "type": "object",
+        "properties": {
+          "rut": {
+            "type": "string"
+          },
+          "nombreCompleto": {
+            "type": "string"
+          },
+          "nombreUsuario": {
+            "type": "string"
+          },
+          "sucursalId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombreSucursal": {
+            "type": "string"
+          },
+          "cargoId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombreCargo": {
+            "type": "string"
+          }
+        }
+      },
+      "PaginacionFuncionarioResponseDTO": {
+        "type": "object",
+        "properties": {
+          "totalPagina": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pagina": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalElementos": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "funcionarios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FuncionarioResponseDTO"
+            }
+          }
+        }
+      },
+      "ParFaseDTO": {
+        "type": "object",
+        "properties": {
+          "faseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "descripcion": {
+            "type": "string"
+          },
+          "subfase": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ParFaseHijaDTO"
+            }
+          }
+        }
+      },
+      "ParFaseHijaDTO": {
+        "type": "object",
+        "properties": {
+          "faseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "descripcion": {
+            "type": "string"
+          }
+        }
+      },
+      "EstadoSolicitudDTO": {
+        "type": "object",
+        "properties": {
+          "estadoId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string"
+          }
+        }
+      },
+      "EstadoCivilResponseDTO": {
+        "type": "object",
+        "properties": {
+          "estadoCivilId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "descripcion": {
+            "type": "string"
+          }
+        }
+      },
+      "ProspectoResponseDTO": {
+        "type": "object",
+        "properties": {
+          "rut": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "movil": {
+            "type": "string"
+          },
+          "prospectoId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "solicitudId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "DatosBasicosMinimosResponseDTO": {
+        "type": "object",
+        "properties": {
+          "prospectoId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "rut": {
+            "type": "string"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "apellidoPatenro": {
+            "type": "string"
+          },
+          "apellidoMaterno": {
+            "type": "string"
+          }
+        }
+      },
+      "CanalDTO": {
+        "type": "object",
+        "properties": {
+          "canalId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string"
+          }
+        }
+      },
+      "ActividadResponseDTO": {
+        "type": "object",
+        "properties": {
+          "actividadId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "descripcion": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

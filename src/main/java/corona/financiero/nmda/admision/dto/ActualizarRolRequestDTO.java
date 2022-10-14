@@ -1,0 +1,14 @@
+package corona.financiero.nmda.admision.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ActualizarRolRequestDTO extends CrearRolRequestDTO {
+    private Long rolId;
+
+    private boolean vigencia;
+}

@@ -1,0 +1,106 @@
+# Pipeline to deploy Backend in AKS
+pr:
+  branches:
+    include:
+      - develop
+      - release
+      - master
+
+pool: vm-linux-cicd
+
+resources:
+- repo: self
+
+variables:
+  - group: vars-nmda-admision-project
+  - group: dev-nmda-admision-api
+  - name: sourcePath 
+    value: '$(system.defaultworkingdirectory)/'
+
+stages:
+- stage: Build
+  displayName : Build Stage
+
+  jobs:
+  - job: Build
+    displayName : Build
+    steps:
+      - bash: |
+          Version=$(/opt/maven/bin/mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo "##vso[task.setvariable variable=API_VERSION;]$Version"
+        displayName: "Get Version Maven"
+
+      - task: SonarQubePrepare@5
+        inputs:
+          SonarQube: 'SonarQube9'
+          scannerMode: 'CLI'
+          configMode: 'file'
+
+      - task: Maven@3
+        inputs:
+          mavenPomFile: 'pom.xml'
+          publishJUnitResults: false
+          javaHomeOption: 'JDKVersion'
+          mavenVersionOption: 'Default'
+          mavenAuthenticateFeed: false
+          effectivePomSkip: false
+          sonarQubeRunAnalysis: false
+      
+      - task: SonarQubeAnalyze@5
+
+      - task: SonarQubePublish@5
+        inputs:
+          pollingTimeoutSec: '300'
+      
+#      - task: sonar-buildbreaker@8
+#        displayName: "Aprobación SonarQube"
+#        inputs:
+#          SonarQube: 'SonarQube9'
+  
+      - task: CopyFiles@2
+        displayName: 'Copy Files: JAR'
+        inputs:
+          SourceFolder: '$(sourcePath)'
+          Contents: '**/*.jar'
+          TargetFolder: '$(build.artifactstagingdirectory)'
+  
+      - task: CopyFiles@2
+        displayName: 'Copy Files: AKS'
+        inputs:
+          SourceFolder: '$(sourcePath)'
+          Contents: 'aks/*.yaml'
+          TargetFolder: '$(build.artifactstagingdirectory)'
+      
+      - task: CopyFiles@2
+        displayName: 'Copy pom.xml'
+        inputs:
+          SourceFolder: '$(sourcePath)'
+          Contents: 'pom.xml'
+          TargetFolder: '$(build.artifactstagingdirectory)'
+      
+      - task: CopyFiles@2
+        displayName: 'Copy swagger'
+        inputs:
+          SourceFolder: '$(sourcePath)'
+          Contents: 'config/*.json'
+          TargetFolder: '$(build.artifactstagingdirectory)'
+  
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish Artifact: drop'
+        inputs:
+          PathtoPublish: '$(build.artifactstagingdirectory)'
+      
+      - bash: |
+          echo $(API_VERSION)
+        displayName: "Tag Version ACR"
+
+      - task: Docker@2
+        condition: eq(variables['Build.SourceBranchName'], 'develop')
+        inputs:
+          containerRegistry: 'ACR-fin-develop'
+          repository: '$(COST_CENTER)/nmda/dev-nmda-admision-api'
+          command: 'buildAndPush'
+          Dockerfile: '**/Dockerfile'
+          tags: 'v$(API_VERSION)'
+
+          

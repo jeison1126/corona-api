@@ -1,0 +1,14 @@
+package corona.financiero.nmda.admision.dto.equifax;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class EquifaxErrorResponseDTO {
+    private String faultcode;
+    private String faultstring;
+    private String faultactor;
+}
